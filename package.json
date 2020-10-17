@@ -6,14 +6,14 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "",
+  "repository": "https://github.com/rebeccasc/kasa-control-center",
   "keywords": [
     "Kasa",
     "TP-Link",
     "Smart Home"
   ],
   "author": "Rebecca Schmidt",
-  "license": "",
+  "license": "GPLv3",
   "devDependencies": {
     "electron": "^10.1.3"
   },
