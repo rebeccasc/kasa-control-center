@@ -1,0 +1,78 @@
+:root{
+    --bg-color: #547475;
+    --text-color: #ced8d8;
+    --schadow-color: #313b3b;
+    --well-bg-color: #2c3838;
+    --border-radius: 5px;
+    --small-screen-width: 500px;
+}
+
+html, body{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    background-color: var(--well-bg-color);
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: var(--bg-color);
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: var(--well-bg-color);
+}
+
+
+.row.content {
+    height: var(--rowcontent-height);
+}
+
+.well {
+    height: 100px;
+    width: 100%;
+    box-shadow: 5px 5px 10px var(--schadow-color);
+    background-color: var(--well-bg-color);
+    color: var(--text-color);
+    border-width: 0;
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+    display: flex; 
+    justify-content: center;
+}
+
+@media screen and (max-width: var(--small-screen-width)) {
+    .row.content {
+        height: auto;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 0px 0px;
+    }
+}
+
+h4{
+    padding: 10px;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: var(--text-color);
+    border-width: 0;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: Large;
+    border: none;
+    outline: none;
+}
+
+button:active {
+    transform: translateY(4px);
+}
+
+

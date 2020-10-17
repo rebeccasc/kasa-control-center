@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kasa Control Center</title>
+    <meta charset="UTF-8">
+
+    <script>
+      if (typeof module === 'object') {
+          window.module = module;
+          module = undefined;
+      }
+   </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+
+  <body>
+  
+    <script src="src/controller.js"></script>        
+
+    <div class="container-fluid">
+      <div class="row content">
+
+        <div class="col-sm-12" id="main-container">
+          <div class="col-sm-4" id="device-template" style="display: none;">
+              <div class="well" id="d-col-template">
+                  <!-- <h4>Device Name</h4>      -->
+                  <button id="button" type="button">On</button>       
+              </div>
+          </div>
+
+        </div>
+
+      </div>
+      </div>
+    </div>
+
+    <script>
+      window.onresize = function () {
+          // TODO implement
+      };
+    </script>
+
+  </body>
+
+</html>

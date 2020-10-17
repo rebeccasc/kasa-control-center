@@ -1,0 +1,24 @@
+{
+  "name": "kasa-control-center",
+  "version": "1.0.0",
+  "description": "Tool to control Kasa smart home devices",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Kasa",
+    "TP-Link",
+    "Smart Home"
+  ],
+  "author": "Rebecca Schmidt",
+  "license": "",
+  "devDependencies": {
+    "electron": "^10.1.3"
+  },
+  "dependencies": {
+    "custom-electron-titlebar": "^3.2.5",
+    "tplink-smarthome-api": "^3.1.0"
+  }
+}
