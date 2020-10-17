@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   new customTitlebar.Titlebar({
     backgroundColor: customTitlebar.Color.fromHex("#2c3838"),
-    // icon: "../resources/icon.png",
+    icon: "resources/icon.png",
     menu: false
   });
 

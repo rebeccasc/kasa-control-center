@@ -8,6 +8,7 @@ function createWindow () {
     height: 600,
     autoHideMenuBar: true,
     frame: false,
+    icon: "resources/icon.png",
     webPreferences: {
       enableRemoteModule: true,
       nodeIntegration: true,
