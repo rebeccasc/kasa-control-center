@@ -1,5 +1,5 @@
 # Kasa Control Center
-[![license: GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square&maxAge=7200)](https://github.com/rebeccasc/kasa-control-center/blob/bim-import/LICENSE.txt)
+[![license: GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square&maxAge=7200)](https://github.com/rebeccasc/kasa-control-center/blob/master/LICENSE.txt)
 
 A desktop GUI to control TP-Link (Kasa) smart home devices. 
 
