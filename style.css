@@ -1,8 +1,8 @@
 :root{
-    --bg-color: #547475;
+    --bg-color: #566070;
     --text-color: #ced8d8;
     --schadow-color: #313b3b;
-    --well-bg-color: #2c3838;
+    --well-bg-color: #444b55;
     --border-radius: 5px;
     --small-screen-width: 500px;
 }
