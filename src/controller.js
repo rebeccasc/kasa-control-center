@@ -1,4 +1,6 @@
 let { Client } = require('tplink-smarthome-api');
+const { default: BulbSchedule } = require('tplink-smarthome-api/lib/bulb/schedule');
+const { default: Dimmer } = require('tplink-smarthome-api/lib/plug/dimmer');
 
 let client = new Client();
 var backgroundOn = "#468153";
@@ -11,8 +13,11 @@ client.startDiscovery().on('device-new', (device) => {
   deviceTemplate.style.display = "block";
   deviceButton = deviceTemplate.children[0].children[0];
   deviceButton.innerHTML = `${device.alias}`;
-  
-  // listener
+  deviceSliderLabel = deviceTemplate.children[0].children[1];
+  deviceSlider = deviceTemplate.children[0].children[2];
+  deviceSliderPerc = deviceTemplate.children[0].children[3];
+
+  // button listener
   deviceButton.addEventListener("click", function(){
     device.getPowerState().then( function(response){                               
         if(response == true){
@@ -33,6 +38,21 @@ client.startDiscovery().on('device-new', (device) => {
           setDevicePanelBackground(device, backgroundOff)
         }
   });
+
+  // dimmable layout
+  if(device.deviceType == "bulb" && device.supportsBrightness){
+    // // set visible
+    // deviceSliderLabel.style.display = "block";
+    // deviceSlider.style.display = "block";
+    // deviceSliderPerc.style.display = "block";
+    
+    // console.log(device.supportsDimmer());
+
+    // // add listener
+    // deviceSlider.oninput = function() {
+    //   console.log(this.value);      
+    // };
+  }
 
   // add to view
   mainContainer = document.getElementById("main-container");

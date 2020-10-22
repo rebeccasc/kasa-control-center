@@ -55,7 +55,7 @@ html, body{
 }
 
 button {
-    width: 100%;
+    width: 60%;
     height: 100%;
     background-color: transparent;
     color: var(--text-color);
@@ -65,10 +65,27 @@ button {
     font-size: Large;
     border: none;
     outline: none;
+    display: inline-block;
 }
 
 button:active {
     transform: translateY(4px);
 }
 
+input[type=range][orient=vertical]
+{
+    -webkit-appearance: slider-vertical;
+    width: 5px;
+    height: 100%;
+    padding: 0 5px;
+    opacity: 0.6;
+    display: inline-block;
+}
+
+slabel
+{
+    transform: rotate(90deg);
+    margin: 0;
+    padding: 0;
+}
 
