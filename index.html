@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Kasa Control Center</title>
     <meta charset="UTF-8">
@@ -25,11 +25,13 @@
         <div class="col-sm-12" id="main-container">
           <div class="col-sm-4" id="device-template" style="display: none;">
               <div class="well" id="d-col-template">             
-                  <button id="button" type="button">On</button>  
-                  <slabel id="label-bn" style="display: none;">Brightness</slabel>
-                  <input id="slider" class="border-0" type="range" orient="vertical" min="0" max="100" style="display: none;"/>
-                  <p id="label-per" style="display: none;">100%</p>
-              </div>    
+                  <button id="button" type="button">On</button>          
+              </div>  
+              <div class="well" id="d-col-template-small">             
+                <slabel>&#9728</slabel>
+                <input class="border-0" type="range" min="0" max="100" disabled/>
+                <slabel>100%</slabel>
+            </div>   
           </div>   
         </div>
       </div>
