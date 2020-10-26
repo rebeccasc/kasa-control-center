@@ -24,14 +24,16 @@ client.startDiscovery().on('device-new', (device) => {
         }
         else{
           turnOn(device);
-          enableControlPanel(deviceControl);
+          if(device.deviceType == "bulb" && device.supportsBrightness) {
+            enableControlPanel(deviceControl);
+          }
         }
     });
   });
 
   // set state-layout
-  device.getPowerState().then( function(response){                               
-    if(response == true){
+  device.getPowerState().then(function(state){                               
+    if(state == true){
       setDevicePanelBackground(device, backgroundOn)
     }
     else{
