@@ -55,6 +55,15 @@ html, body{
     padding-top: 5px;
 }
 
+#d-col-template-bar
+{
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+}
+
 @media screen and (max-width: var(--small-screen-width)) {
     .row.content {
         height: auto;
@@ -80,6 +89,20 @@ button {
 
 button:active {
     transform: translateY(4px);
+}
+
+#button-bar{
+    width: 40%;
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    box-shadow: 5px 5px 10px var(--schadow-color);
+    font-family: Arial;
+    font-weight: bold;
+    font-size: Large;
+    display: inline-block;
+    margin: 7px 5px 5px 5px;
 }
 
 input[type=range]

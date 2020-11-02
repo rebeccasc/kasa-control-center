@@ -1,80 +1,106 @@
 let { Client } = require('tplink-smarthome-api');
 
 let client = new Client();
+let deviceContainer = [];
 var backgroundOn = "#468153";
 var backgroundOff = getComputedStyle(document.documentElement).getPropertyValue("-well-bg-color");
 
-// on load
-client.startDiscovery().on('device-new', (device) => {
-  // device template
-  let deviceTemplate = document.getElementById("device-template").cloneNode(true);
-  deviceTemplate.style.display = "block";
-  let deviceButton = deviceTemplate.children[0].children[0];
-  deviceButton.innerHTML = `${device.alias}`;
-  let deviceControl = deviceTemplate.children[1];
-  let deviceSlider = deviceControl.children[1];
-  let deviceLabel = deviceControl.children[2];
+// setup
+{
+  initControlBar();
+  loadDevices();
+}
 
-  // button listener
-  deviceButton.addEventListener("click", function(){
-    device.getPowerState().then( function(response){                               
-        if(response == true){
-          turnOff(device);
-          disableControlPanel(deviceControl);
-        }
-        else{
-          turnOn(device);
-          if(device.deviceType == "bulb" && device.supportsBrightness) {
-            enableControlPanel(deviceControl);
+function initControlBar(){
+  let controlBar = document.getElementById("control-bar");
+  let allOnButton = controlBar.children[0].children[0];
+  let allOffButton = controlBar.children[0].children[1];
+
+  // add button listener
+  allOnButton.addEventListener("click", function(){
+    turnOnAll();
+  });
+  allOffButton.addEventListener("click", function(){
+    turnOffAll();
+  });
+}
+
+function loadDevices(){
+  client.startDiscovery().on('device-new', (device) => {
+    // device template
+    let deviceTemplate = document.getElementById("device-template").cloneNode(true);
+    deviceTemplate.style.display = "block";
+    let deviceButton = deviceTemplate.children[0].children[0];
+    deviceButton.innerHTML = `${device.alias}`;
+    let deviceControl = deviceTemplate.children[1];
+    let deviceSlider = deviceControl.children[1];
+    let deviceLabel = deviceControl.children[2]
+
+    // button listener
+    deviceButton.addEventListener("click", function(){
+      device.getPowerState().then( function(response){                               
+          if(response == true){
+            turnOff(device);
+            disableControlPanel(deviceControl);
           }
-        }
+          else{
+            turnOn(device);
+            if(device.deviceType == "bulb" && device.supportsBrightness) {
+              enableControlPanel(deviceControl);
+            }
+          }
+      });
     });
-  });
 
-  // set state-layout
-  device.getPowerState().then(function(state){                               
-    if(state == true){
-      setDevicePanelBackground(device, backgroundOn)
-    }
-    else{
-      setDevicePanelBackground(device, backgroundOff)
-    }
-  });
-
-  // dimmable layout
-  if(device.deviceType == "bulb" && device.supportsBrightness) {
-    // set visible
+    // set state-layout
     device.getPowerState().then(function(state){                               
       if(state == true){
-        enableControlPanel(deviceControl);
+        setDevicePanelBackground(device, backgroundOn)
+      }
+      else{
+        setDevicePanelBackground(device, backgroundOff)
       }
     });
 
-    // set to last lightstate
-    device.lighting.getLightState().then(function(state){   
-      if(state.brightness != undefined){
-        deviceLabel.innerHTML = `${state.brightness}%`;
-        deviceSlider.value = state.brightness;
-      }
-    })    
+    // dimmable layout
+    if(device.deviceType == "bulb" && device.supportsBrightness) {
+      // set visible
+      device.getPowerState().then(function(state){                               
+        if(state == true){
+          enableControlPanel(deviceControl);
+        }
+      });
 
-    //add listener
-    deviceSlider.oninput = function() {
-      setLightStateOfDevice(device, this.value);
-      deviceLabel.innerHTML = `${this.value}%`;
-    };
-  }
+      // set to last lightstate
+      device.lighting.getLightState().then(function(state){   
+        if(state.brightness != undefined){
+          deviceLabel.innerHTML = `${state.brightness}%`;
+          deviceSlider.value = state.brightness;
+        }
+      })    
 
-  // add to view
-  let mainContainer = document.getElementById("main-container");
-  mainContainer.appendChild(deviceTemplate)
-});
+      // add slider listener
+      deviceSlider.oninput = function() {
+        setLightStateOfDevice(device, this.value);
+        deviceLabel.innerHTML = `${this.value}%`;
+      };
+    }
+
+    document.getElementById("main-container").appendChild(deviceTemplate)
+    deviceContainer.push(device);
+  });
+}
 
 function turnOnAll(){
-  client.startDiscovery().on('device-new', (device) => {
-    device.getSysInfo().then(console.log);
-    device.setPowerState(true);
-  });
+  deviceContainer.forEach(function(d){
+    turnOn(d);
+  })
+}
+
+function turnOffAll(){
+  deviceContainer.forEach(function(d){
+      turnOff(d);
+  })
 }
 
 function turnOn(device){
